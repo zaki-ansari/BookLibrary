@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.masai.exception.BookNotFoundException;
 import com.masai.module.Book;
+import com.masai.module.Reader;
 
 
 public interface BookService {
@@ -17,5 +18,9 @@ public interface BookService {
 	public Book viewBook(Integer bookId)throws BookNotFoundException;
 	
 	public List<Book> viewAllBooks()throws BookNotFoundException;
+	
+	public Reader getBook(Integer bookId)throws BookNotFoundException;
+	
+	public List<Reader> getAllBooksReader()throws BookNotFoundException;
 
 }

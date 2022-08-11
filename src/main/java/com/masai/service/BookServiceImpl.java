@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.masai.exception.BookNotFoundException;
 import com.masai.module.Book;
+import com.masai.module.Reader;
 import com.masai.repository.BookDao;
 
 @Service
@@ -26,7 +27,7 @@ public class BookServiceImpl implements BookService{
 	public Book updateBook(Book book) throws BookNotFoundException {
 		
 
-		Optional<Book> opt = bDao.findById(book.getbookId());
+		Optional<Book> opt = bDao.findById(book.getBookId());
 		
 		if(opt.isPresent()) {
 			
@@ -65,6 +66,33 @@ public class BookServiceImpl implements BookService{
 		else
 			throw new BookNotFoundException("No Book found...");
 		}
+
+	@Override
+	public Reader getBook(Integer bookId) throws BookNotFoundException {
+		
+		Reader book =bDao.getBookById(bookId);
+		if(book!=null)
+		{
+			return book;
+		}
+		else {
+			throw new BookNotFoundException("Book not found with this id"+bookId);
+		}
+	}
+
+	@Override
+	public List<Reader> getAllBooksReader() throws BookNotFoundException {
+		
+		List<Reader>books = bDao.getAllBooks();
+		
+		if(books.size()>0)
+		{
+			return books;
+		}
+		else {
+			throw new BookNotFoundException("No Book found..."); 
+		}
+	}
 	
 	
 	
